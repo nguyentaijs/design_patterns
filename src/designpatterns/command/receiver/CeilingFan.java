@@ -24,4 +24,13 @@ public class CeilingFan implements Receiver {
 			System.out.println("Ceiling fan is already turned off");
 		}
 	}
+
+	public void max() {
+		currentSpeed = MAX_SPEED;
+		System.out.println("Ceiling fan Speed reaches max = " + currentSpeed);
+	}
+	public void off() {
+		currentSpeed = 0;
+		System.out.println("Turn of the ceiling fan");
+	}
 }
