@@ -7,6 +7,7 @@ public class SimpleRemote implements Remote {
 
 	private Command[] onCommands;
 	private Command[] offCommands;
+	private Command lastCommand;
 
 	public SimpleRemote() {
 		onCommands = new Command[7];
@@ -15,6 +16,7 @@ public class SimpleRemote implements Remote {
 			onCommands[i] = new NoCommand();
 			offCommands[i] = new NoCommand();
 		}
+		lastCommand = new NoCommand();
 	}
 
 	@Override
@@ -26,10 +28,19 @@ public class SimpleRemote implements Remote {
 	@Override
 	public void onButtonClicked(int slot) {
 		onCommands[slot].execute();
+		lastCommand = onCommands[slot];
 	}
 
 	@Override
 	public void offButtonClicked(int slot) {
 		offCommands[slot].execute();
+		lastCommand = offCommands[slot];
 	}
+
+	@Override
+	public void undo() {
+		System.out.println("Undo the last action");
+		lastCommand.undo();
+	}
+
 }

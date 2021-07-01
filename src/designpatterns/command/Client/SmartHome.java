@@ -10,6 +10,7 @@ import designpatterns.command.receiver.CeilingFan;
 import designpatterns.command.receiver.Light;
 
 public class SmartHome {
+
 	public static void main(String[] args) {
 		Light livingRoomLight = new Light("Living room");
 		LightOnCommand lightOnCommand = new LightOnCommand(livingRoomLight);
@@ -27,8 +28,6 @@ public class SmartHome {
 		simpleRemote.setCommand(0, lightOnCommand, lightOffCommand);
 		simpleRemote.setCommand(1, kitchenLightOnCommand, kitchenLightOffCommand);
 		simpleRemote.setCommand(2, ceilingFanHighCommand, ceilingFanLowCommand);
-
-
 
 		simpleRemote.onButtonClicked(0);
 		simpleRemote.offButtonClicked(0);
@@ -48,6 +47,11 @@ public class SmartHome {
 		simpleRemote.onButtonClicked(2);
 		simpleRemote.onButtonClicked(2);
 
+		// Undo
+		simpleRemote.undo();
+
+		simpleRemote.onButtonClicked(1);
+		simpleRemote.undo();
 	}
 	
 }
